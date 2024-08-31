@@ -77,7 +77,7 @@ namespace W3Labs
                    });
 
         }
-        string _currentVideoPath = "";
+        public string _currentVideoPath = "";
         IEnumerator GettingVideoLink()
         {
             yield return new WaitForSeconds(1);

@@ -4,19 +4,48 @@ using System.Collections;
 using TMPro;
 using UnityEngine.UI;
 using System.IO;
+using W3Labs;
 
 public class TelegramBot : MonoBehaviour
 {
-    [SerializeField] Button button;
+    [SerializeField] Button button , _downloadButton;
+
+    [SerializeField] AIInFluencerHandler AIInfluence;
     private string botToken = "7034801212:AAEoF6U9A1IU7xaFGgNqPXD9NsVcfNnLq9E"; // Replace with your bot token
     private string channelUsername = "@AIInfluencerTest"; // Replace with your channel username (must start with @)
 
     private void Start() {
         // SendMessageToChannel(@"C:\Users\vaibh\Desktop\Yo.mp4");
-        string filePath = Path.Combine(Application.persistentDataPath, "Yo.mp4");
+        Debug.Log(AIInfluence._currentVideoPath);
+        string filePath = Path.Combine(AIInfluence._currentVideoPath);
         button.onClick.AddListener(()=>{
                 SendMessageToChannel(filePath);
             });
+        _downloadButton.onClick.AddListener(()=>{
+            DownloadVideo();
+        });
+    }
+    void DownloadVideo(){
+        string savePath = Path.Combine(Application.persistentDataPath, AIInfluence._currentVideoPath);
+         byte[] videoData = GetVideoData(); // Replace this with your actual video data retrieval method
+
+        // Write the video data to the file
+        try
+        {
+            File.WriteAllBytes(savePath, videoData);
+            Debug.Log("Video saved successfully at: " + savePath);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Failed to save video: " + e.Message);
+        }
+    }
+    byte[] GetVideoData()
+    {
+        // For demonstration purposes, create a dummy byte array
+        // Replace this with actual video file reading or download logic
+        byte[] videoData = new byte[1000]; // Replace with actual data
+        return videoData;
     }
     public void SendMessageToChannel(string videoPath)
     {

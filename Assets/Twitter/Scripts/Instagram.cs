@@ -2,14 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using W3Labs;
 
 public class Instagram : MonoBehaviour
 {
     [SerializeField] Button button;
+    [SerializeField] AIInFluencerHandler AIInfluence;
+
 
     private void Start()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, "Yo.mp4");
+        string filePath = Path.Combine(AIInfluence._currentVideoPath);
         button.onClick.AddListener(() => { 
                 ShareVideo(filePath); 
             });
