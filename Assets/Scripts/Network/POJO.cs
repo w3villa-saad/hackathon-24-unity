@@ -24,7 +24,34 @@ namespace W3Labs.ViralRunner.Network
         public string player_id { get; set; }
         public string created_at { get; set; }
         public string updated_at { get; set; }
+        public string id { get; set; }
     }
+
+    public class TextPromsPOJO
+    {
+        public string user_id { get; set; }
+        public string user_image_input { get; set; }
+        public string user_text_input { get; set; }
+        public string script_output { get; set; }
+        public string video_response { get; set; }
+        public string timestamp { get; set; }
+        public string id { get; set; }
+        public string created_at { get; set; }
+        public string updated_at { get; set; }
+    }
+    public class VideoPromsPOJO
+    {
+        public string user_id { get; set; }
+        public string user_image_input { get; set; }
+        public string user_text_input { get; set; }
+        public string script_output { get; set; }
+        public string video_response { get; set; }
+        public string timestamp { get; set; }
+        public string id { get; set; }
+        public string created_at { get; set; }
+        public string updated_at { get; set; }
+    }
+
 
     [Serializable]
     public class SetPlayerData

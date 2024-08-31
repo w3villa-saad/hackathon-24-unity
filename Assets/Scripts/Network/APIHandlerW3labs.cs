@@ -89,14 +89,40 @@ namespace W3Labs.ViralRunner.Network
         }
 
 
-        public async void GenerateTextFromProms(string userTextInput, Action<bool, UserInfo> actionOnResponse)
+        public async void GenerateTextFromProms(string userTextInput, Action<bool, TextPromsPOJO> actionOnResponse)
         {
             var url = baseURL + "history/create";
             _postDict.Clear();
             // _postDict.Add("name", username);
             // _postDict.Add("email", email);
-            _postDict.Add("player_id", PlayerPrefs.GetString("PlayerID"));
-            _postDict.Add("user_text_input", PlayerPrefs.GetString("PlayerToken"));
+            _postDict.Add("user_id", PlayerPrefs.GetString("userId"));
+            //  _postDict.Add("user_text_input", PlayerPrefs.GetString("PlayerToken"));
+            _postDict.Add("user_text_input", userTextInput);
+
+            // _postDict.Add(GameConstant.PlayerCurrentGameMode, currentMode.ToString());
+            var postData = MySerializer.Serialize(_postDict);
+            //  string postData = "{\"username\":\"" + username + "\",\"country\":\"" + country + "\"}";
+
+            Debug.Log($"{url} : {postData}");
+            var res = await _apiClient.Post<APIResponse<TextPromsPOJO>>(url, postData);
+            if (res != null && res.status)
+            {
+                actionOnResponse.Invoke(true, res.data);
+            }
+            else
+            {
+                actionOnResponse?.Invoke(false, null);
+            }
+        }
+
+
+        public async void GenerateVideoFromText(string aiTextInput, string id, Action<bool, TextPromsPOJO> actionOnResponse)
+        {
+            var url = baseURL + "history/update" + id;
+            _postDict.Clear();
+            // _postDict.Add("name", username);
+            _postDict.Add("email", aiTextInput);
+            // _postDict.Add("player_id", PlayerPrefs.GetString("PlayerID"));
             //  _postDict.Add("playerId", playerID);
 
             // _postDict.Add(GameConstant.PlayerCurrentGameMode, currentMode.ToString());
@@ -104,7 +130,7 @@ namespace W3Labs.ViralRunner.Network
             //  string postData = "{\"username\":\"" + username + "\",\"country\":\"" + country + "\"}";
 
             Debug.Log($"{url} : {postData}");
-            var res = await _apiClient.Post<APIResponse<UserInfo>>(url, postData);
+            var res = await _apiClient.Post<APIResponse<TextPromsPOJO>>(url, postData);
             if (res != null && res.status)
             {
                 actionOnResponse.Invoke(true, res.data);
