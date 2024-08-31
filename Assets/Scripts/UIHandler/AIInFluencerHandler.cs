@@ -78,28 +78,35 @@ namespace W3Labs
 
         }
         string _currentVideoPath = "";
+        bool _isvideoLinkAvaible = false;
         IEnumerator GettingVideoLink()
         {
-            yield return new WaitForSeconds(1);
-            bool isvideoLinkAvaible = false;
-            APIHandlerW3labs.Instance.GetVideolink((status, data) =>
-                               {
-                                   if (status)
+            // yield return new WaitWhile(() => isvideoLinkAvaible == true);
+            while (_isvideoLinkAvaible == false)
+            {
+                APIHandlerW3labs.Instance.GetVideolink(_texpromsPOJO.id, (status, data) =>
                                    {
-                                       //    isvideoLinkAvaible = true;
-                                       //    _videoPlayer.url = data.link;
-                                       //    _videoPlayer.Play();
-                                       _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id);
-                                       StartCoroutine(DownloadAndPlayVideo(data.link, _currentVideoPath));
+                                       if (status)
+                                       {
+                                           //    isvideoLinkAvaible = true;
+                                           //    _videoPlayer.url = data.link;
+                                           //    _videoPlayer.Play();
+                                           _isvideoLinkAvaible = false;
+                                           _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id);
+                                           StartCoroutine(DownloadAndPlayVideo(data.link, _currentVideoPath));
 
-                                   }
-                                   else
-                                   {
-                                       Debug.Log("Value Not Set");
+                                       }
+                                       else
+                                       {
+                                           Debug.Log("Value Not Set");
 
-                                   }
+                                       }
 
-                               });
+                                   });
+                yield return new WaitForSeconds(5f);
+
+            }
+
 
 
         }

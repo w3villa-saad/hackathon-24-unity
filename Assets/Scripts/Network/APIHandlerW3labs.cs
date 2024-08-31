@@ -26,10 +26,10 @@ namespace W3Labs.ViralRunner.Network
         // string baseURL = $"https://3yss3qru2i56mu27zr3o5574vy0lloea.lambda-url.us-west-2.on.aws/api/";
         string baseURL => $"https://codekenawabs.edully.com/v1/api/";
         // string baseURL = $"https://7936-136-232-130-202.ngrok-free.app/api/";
-        public async void GetVideolink(Action<bool, GettingVideoLink> actinOnResponse)
+        public async void GetVideolink(string id, Action<bool, GettingVideoLink> actinOnResponse)
         {
 
-            var url = "https://codekenawabs.edully.com/v1/api/history/video_status/1";
+            var url = baseURL + "history/video_status/" + id;
             var res = await _apiClient.Get<APIResponse<GettingVideoLink>>(url);
             if (res != null && res.status == true)
             {
