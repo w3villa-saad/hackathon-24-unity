@@ -21,6 +21,7 @@ namespace W3Labs
                        if (status)
                        {
                            userInfo = data;
+                           PlayerPrefs.SetString("userId", data.id);
                            SceneManager.LoadSceneAsync(1);
                        }
                        else

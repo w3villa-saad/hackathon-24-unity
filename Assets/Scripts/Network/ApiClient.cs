@@ -15,6 +15,10 @@ namespace W3Labs.ViralRunner.Network
 
         private readonly ISerializationOption serializationOption;
         private const int _timeout = 30;
+        void Start()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
 
 
 
