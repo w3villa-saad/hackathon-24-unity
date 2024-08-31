@@ -22,15 +22,15 @@ namespace W3Labs.ViralRunner.Network
         // public static APIResponse<LeaderBoardDataPOJO> leaderBoardDataPOJO = new APIResponse<LeaderBoardDataPOJO>();
         private Dictionary<string, object> _postDict = new Dictionary<string, object>();
 
-        public static LeaderBoardDataPOJO leaderBoardDataPOJO = new LeaderBoardDataPOJO();
+        public static GettingVideoLink leaderBoardDataPOJO = new GettingVideoLink();
         // string baseURL = $"https://3yss3qru2i56mu27zr3o5574vy0lloea.lambda-url.us-west-2.on.aws/api/";
         string baseURL => $"https://codekenawabs.edully.com/v1/api/";
         // string baseURL = $"https://7936-136-232-130-202.ngrok-free.app/api/";
-        public async void GetLeaderBoard(Action<bool, LeaderBoardDataPOJO> actinOnResponse)
+        public async void GetVideolink(Action<bool, GettingVideoLink> actinOnResponse)
         {
 
-            var url = baseURL + "getLeaderboard";
-            var res = await _apiClient.Get<APIResponse<LeaderBoardDataPOJO>>(url);
+            var url = "https://codekenawabs.edully.com/v1/api/history/video_status/1";
+            var res = await _apiClient.Get<APIResponse<GettingVideoLink>>(url);
             if (res != null && res.status == true)
             {
 
@@ -114,32 +114,49 @@ namespace W3Labs.ViralRunner.Network
                 actionOnResponse?.Invoke(false, null);
             }
         }
-
-
-        public async void GenerateVideoFromText(string aiTextInput, string id, Action<bool, TextPromsPOJO> actionOnResponse)
+        public async void GenerateVideoFromText(string aiTextInput, string id, Action<bool> actinOnResponse)
         {
-            var url = baseURL + "history/update" + id;
-            _postDict.Clear();
-            // _postDict.Add("name", username);
-            _postDict.Add("email", aiTextInput);
-            // _postDict.Add("player_id", PlayerPrefs.GetString("PlayerID"));
-            //  _postDict.Add("playerId", playerID);
-
-            // _postDict.Add(GameConstant.PlayerCurrentGameMode, currentMode.ToString());
-            var postData = MySerializer.Serialize(_postDict);
-            //  string postData = "{\"username\":\"" + username + "\",\"country\":\"" + country + "\"}";
-
-            Debug.Log($"{url} : {postData}");
-            var res = await _apiClient.Post<APIResponse<TextPromsPOJO>>(url, postData);
-            if (res != null && res.status)
+            var url = baseURL + "history/generate_video/" + id;
+            var res = await _apiClient.Get<APIResponse<VideoGetPOJO>>(url);
+            if (res != null && res.status == true)
             {
-                actionOnResponse.Invoke(true, res.data);
+
+                // Debug.Log("Data ::" + res.data + res.success);
+                actinOnResponse?.Invoke(true);
             }
             else
             {
-                actionOnResponse?.Invoke(false, null);
+                //  Debug.Log("Data ::" + res.success);
+                actinOnResponse?.Invoke(false);
             }
         }
+
+
+
+        // public async void GenerateVideoFromText(string aiTextInput, string id, Action<bool> actionOnResponse)
+        // {
+        //     var url = baseURL + "history/update" + id;
+        //     _postDict.Clear();
+        //     // _postDict.Add("name", username);
+        //     _postDict.Add("email", aiTextInput);
+        //     // _postDict.Add("player_id", PlayerPrefs.GetString("PlayerID"));
+        //     //  _postDict.Add("playerId", playerID);
+
+        //     // _postDict.Add(GameConstant.PlayerCurrentGameMode, currentMode.ToString());
+        //     var postData = MySerializer.Serialize(_postDict);
+        //     //  string postData = "{\"username\":\"" + username + "\",\"country\":\"" + country + "\"}";
+
+        //     Debug.Log($"{url} : {postData}");
+        //     var res = await _apiClient.Post<APIResponse<TextPromsPOJO>>(url, postData);
+        //     if (res != null && res.status)
+        //     {
+        //         actionOnResponse.Invoke(true);
+        //     }
+        //     else
+        //     {
+        //         actionOnResponse?.Invoke(false);
+        //     }
+        // }
         public async void UpdateUserScore(string userID, string score, Action<bool, SetPlayerData> actionOnResponse)
         {
 

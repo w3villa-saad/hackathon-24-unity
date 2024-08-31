@@ -1,6 +1,10 @@
+using System.Collections;
+using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using W3Labs.ViralRunner.Network;
 
 namespace W3Labs
@@ -20,6 +24,11 @@ namespace W3Labs
 
         [Header("VideoCreated")]
         [SerializeField] private GameObject _videoPanel;
+        [SerializeField] private VideoPlayer _videoPlayer;
+
+
+        // [Header()]
+
 
 
 
@@ -52,14 +61,15 @@ namespace W3Labs
         {
             string promstextString = _promsText.text;
             Debug.Log(promstextString);
-            string id = "";
+            string id = _texpromsPOJO.id;
             _aiTextPanel.SetActive(true);
-            APIHandlerW3labs.Instance.GenerateVideoFromText(_generatedtext.text, id, (status, data) =>
+            APIHandlerW3labs.Instance.GenerateVideoFromText(_generatedtext.text, id, (status) =>
                    {
                        if (status)
                        {
                            _aiTextPanel.SetActive(false);
                            _videoPanel.SetActive(true);
+                           StartCoroutine(GettingVideoLink());
                        }
                        else
                            Debug.Log("Value Not Set");
@@ -67,5 +77,72 @@ namespace W3Labs
                    });
 
         }
+        string _currentVideoPath = "";
+        IEnumerator GettingVideoLink()
+        {
+            yield return new WaitForSeconds(1);
+            bool isvideoLinkAvaible = false;
+            APIHandlerW3labs.Instance.GetVideolink((status, data) =>
+                               {
+                                   if (status)
+                                   {
+                                       //    isvideoLinkAvaible = true;
+                                       //    _videoPlayer.url = data.link;
+                                       //    _videoPlayer.Play();
+                                       _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id);
+                                       StartCoroutine(DownloadAndPlayVideo(data.link, _currentVideoPath));
+
+                                   }
+                                   else
+                                   {
+                                       Debug.Log("Value Not Set");
+
+                                   }
+
+                               });
+
+
+        }
+
+        IEnumerator DownloadAndPlayVideo(string url, string path)
+        {
+            using (UnityWebRequest www = UnityWebRequest.Get(url))
+            {
+                // Send request and wait for a response
+                yield return www.SendWebRequest();
+
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError($"Error downloading video: {www.error}");
+                }
+                else
+                {
+                    // Save the video to a file
+                    byte[] videoData = www.downloadHandler.data;
+                    File.WriteAllBytes(path, videoData);
+                    Debug.Log("Video downloaded successfully!");
+
+                    // Play the video
+                    PlayVideo(path);
+                }
+            }
+        }
+
+        void PlayVideo(string filePath)
+        {
+            // Set the VideoPlayer's source to the local file
+            _videoPlayer.source = VideoSource.Url;
+            _videoPlayer.url = filePath;
+
+            // Prepare and play the video
+            _videoPlayer.Prepare();
+            _videoPlayer.prepareCompleted += PreparedCompleted;
+        }
+
+        public void PreparedCompleted(VideoPlayer videoPlayer)
+        {
+            videoPlayer.Play();
+        }
+
     }
 }

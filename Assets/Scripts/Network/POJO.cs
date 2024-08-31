@@ -51,6 +51,10 @@ namespace W3Labs.ViralRunner.Network
         public string created_at { get; set; }
         public string updated_at { get; set; }
     }
+    public class VideoGetPOJO
+    {
+
+    }
 
 
     [Serializable]
@@ -66,8 +70,9 @@ namespace W3Labs.ViralRunner.Network
 
 
     }
-    public class LeaderBoardDataPOJO
+    public class GettingVideoLink
     {
+        public string link { get; set; }
         //[JsonProperty("playersDataArray")]
         //  public List<PlayerData> playersDataArray { get; set; }
 
