@@ -60,8 +60,11 @@ namespace W3Labs.Authentication
             try
             {
                 await AuthenticationService.Instance.SignInWithUnityAsync(accessToken);
-                Debug.Log(" [Authentication] SignIn is successful.");
+
+                Debug.Log(" [Authentication] SignIn is successful." + AuthenticationService.Instance.PlayerInfo.Id);
                 _currentPlayerInfo = AuthenticationService.Instance.PlayerInfo;
+                PlayerPrefs.SetString(PlayerData.PlayerToken.ToString(), accessToken);
+                PlayerPrefs.SetString(PlayerData.PlayerID.ToString(), AuthenticationService.Instance.PlayerInfo.Id);
                 var name = await AuthenticationService.Instance.GetPlayerNameAsync();
                 OnSginIned?.Invoke(_currentPlayerInfo, name);
             }
@@ -81,4 +84,5 @@ namespace W3Labs.Authentication
 
 
     }
+
 }

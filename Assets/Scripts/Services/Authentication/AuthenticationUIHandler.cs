@@ -54,4 +54,10 @@ namespace W3Labs.Authentication
         }
 
     }
+
+    public enum PlayerData
+    {
+        PlayerToken,
+        PlayerID
+    }
 }
