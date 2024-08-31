@@ -27,19 +27,21 @@ namespace W3Labs.Authentication
             authenticationManager.OnSginIned -= OnHandleSignedIn;
             authenticationManager.OnSignInAnonymously -= OnHandleSignedIn;
         }
-        async void OnClickLoginButton()
+        public async void OnClickLoginButton()
         {
+            Debug.Log("[Auth]clickget");
             authenticationManager.LoginStart();
 
         }
-        void OnHandleSignedIn(PlayerInfo playerInfo, string playerName)
+        void OnHandleSignedIn(PlayerInfo playerInfo, string playerId, string playerToken)
         {
             loginPanel.gameObject.SetActive(false);
             userPanel.gameObject.SetActive(true);
             userIDText.text = $"ID::{playerInfo.Id}";
-            Debug.Log($" [Authentication]Player Name :: {playerName}");
+            Debug.Log($" [Authentication]Player Name :: {playerId}");
             Debug.Log($" [Authentication]Player Name :: {playerInfo.Username}");
             Debug.Log($" [Authentication]Player Name :: {playerInfo.Identities}");
+
 
 
 

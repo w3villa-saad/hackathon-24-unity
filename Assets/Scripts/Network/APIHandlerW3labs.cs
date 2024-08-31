@@ -10,7 +10,7 @@ namespace W3Labs.ViralRunner.Network
     public class APIHandlerW3labs : MonoBehaviour
     {
 
-        ApiClient _apiClient;
+        [SerializeField] ApiClient _apiClient;
         // public static APIResponse<LeaderBoardDataPOJO> leaderBoardDataPOJO = new APIResponse<LeaderBoardDataPOJO>();
         private Dictionary<string, object> _postDict = new Dictionary<string, object>();
 
@@ -53,7 +53,7 @@ namespace W3Labs.ViralRunner.Network
                 actinOnResponse?.Invoke(false, null);
             }
         }
-        public async void AddUser(string username, string email, string playerID, Action<bool, LeaderBoardDataPOJO> actionOnResponse)
+        public async void AddUser(string username, string email, Action<bool, UserInfo> actionOnResponse)
         {
             var url = baseURL + "createUser";
             int currentMode = (int)GameConstant.CurrentGameMode;
@@ -69,7 +69,7 @@ namespace W3Labs.ViralRunner.Network
             //  string postData = "{\"username\":\"" + username + "\",\"country\":\"" + country + "\"}";
 
             Debug.Log($"{url} : {postData}");
-            var res = await _apiClient.Post<APIResponse<LeaderBoardDataPOJO>>(url, postData);
+            var res = await _apiClient.Post<APIResponse<UserInfo>>(url, postData);
             if (res != null && res.success)
             {
                 actionOnResponse.Invoke(true, res.data);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using PlasticGui.WorkspaceWindow;
 namespace W3Labs.ViralRunner.Network
 {
     [Serializable]
@@ -14,6 +15,16 @@ namespace W3Labs.ViralRunner.Network
         public T data { get; set; }
         // [JsonProperty("display")]
         // public bool display { get; set; }
+    }
+    public class UserInfo
+    {
+        public string name { get; set; }
+        public string email { get; set; }
+        public string language { get; set; }
+        public string token { get; set; }
+        public string player_id { get; set; }
+        public string created_at { get; set; }
+        public string updated_at { get; set; }
     }
 
     [Serializable]

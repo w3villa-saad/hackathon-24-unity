@@ -13,7 +13,7 @@ namespace W3Labs.Authentication
         private PlayerInfo _currentPlayerInfo;
 
         public event Action<PlayerInfo, string> OnSignInSuccessfully;
-        public event Action<PlayerInfo, string> OnSginIned;
+        public event Action<PlayerInfo, string, string> OnSginIned;
         public event Action<string, string> OnSignInAnonymously;
         async void Awake()
         {
@@ -66,7 +66,8 @@ namespace W3Labs.Authentication
                 PlayerPrefs.SetString(PlayerData.PlayerToken.ToString(), accessToken);
                 PlayerPrefs.SetString(PlayerData.PlayerID.ToString(), AuthenticationService.Instance.PlayerInfo.Id);
                 var name = await AuthenticationService.Instance.GetPlayerNameAsync();
-                OnSginIned?.Invoke(_currentPlayerInfo, name);
+                OnSginIned?.Invoke(_currentPlayerInfo, name, accessToken);
+
             }
             catch (AuthenticationException ex)
             {
