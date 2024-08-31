@@ -16,7 +16,7 @@ namespace W3Labs.ViralRunner.Network
 
         public static LeaderBoardDataPOJO leaderBoardDataPOJO = new LeaderBoardDataPOJO();
         // string baseURL = $"https://3yss3qru2i56mu27zr3o5574vy0lloea.lambda-url.us-west-2.on.aws/api/";
-        string baseURL => RemoteConfigManager.BaseURlString;
+        string baseURL => $"http://4.186.57.136/v1/api/";
         // string baseURL = $"https://7936-136-232-130-202.ngrok-free.app/api/";
         public async void GetLeaderBoard(Action<bool, LeaderBoardDataPOJO> actinOnResponse)
         {
@@ -55,13 +55,13 @@ namespace W3Labs.ViralRunner.Network
         }
         public async void AddUser(string username, string email, Action<bool, UserInfo> actionOnResponse)
         {
-            var url = baseURL + "createUser";
+            var url = baseURL + "user/create";
             int currentMode = (int)GameConstant.CurrentGameMode;
             _postDict.Clear();
-            _postDict.Add("name", username);
-            _postDict.Add("email", email);
-            _postDict.Add("player_id", PlayerPrefs.GetString("PlayerToken"));
-            _postDict.Add("token", PlayerPrefs.GetString("PlayerID"));
+            // _postDict.Add("name", username);
+            // _postDict.Add("email", email);
+            _postDict.Add("player_id", PlayerPrefs.GetString("PlayerID"));
+            _postDict.Add("token", PlayerPrefs.GetString("PlayerToken"));
             //  _postDict.Add("playerId", playerID);
 
             // _postDict.Add(GameConstant.PlayerCurrentGameMode, currentMode.ToString());

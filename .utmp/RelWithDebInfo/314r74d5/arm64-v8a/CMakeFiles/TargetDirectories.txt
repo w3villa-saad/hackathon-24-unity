@@ -1,0 +1,5 @@
+/Users/w3villa/Desktop/UnityProjects/Hackathon_24/.utmp/RelWithDebInfo/314r74d5/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/w3villa/Desktop/UnityProjects/Hackathon_24/.utmp/RelWithDebInfo/314r74d5/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/Users/w3villa/Desktop/UnityProjects/Hackathon_24/.utmp/RelWithDebInfo/314r74d5/arm64-v8a/GameActivity/CMakeFiles/game.dir
+/Users/w3villa/Desktop/UnityProjects/Hackathon_24/.utmp/RelWithDebInfo/314r74d5/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+/Users/w3villa/Desktop/UnityProjects/Hackathon_24/.utmp/RelWithDebInfo/314r74d5/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

@@ -131,9 +131,9 @@ namespace W3Labs.ViralRunner.Network
                 webRequest.uploadHandler = new UploadHandlerRaw(jsonToSend);
                 webRequest.downloadHandler = new DownloadHandlerBuffer();
                 webRequest.SetRequestHeader("Content-Type", "application/json");
-                webRequest.SetRequestHeader(GameConstant._authHeaderkey, GameConstant._authHeaderValue);
-                webRequest.SetRequestHeader(GameConstant._vNo, GameConstant.ApplicationVersionNumber);
-                webRequest.SetRequestHeader(GameConstant._userID, GameConstant.UserID);
+                //  webRequest.SetRequestHeader(GameConstant._authHeaderkey, GameConstant._authHeaderValue);
+                //  webRequest.SetRequestHeader(GameConstant._vNo, GameConstant.ApplicationVersionNumber);
+                // webRequest.SetRequestHeader(GameConstant._userID, GameConstant.UserID);
 
                 webRequest.timeout = _timeout;
 
