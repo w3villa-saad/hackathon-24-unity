@@ -1,0 +1,17 @@
+{
+    "name": "W3Labs.ViralRunner.Network",
+    "rootNamespace": "W3Labs.ViralRunner.Network",
+    "references": [
+        "GUID:a64b726e17ffc42d3826ee496f91b841",
+        "GUID:4fc182cc9ec224af68dee9fa2802c4b8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,17 @@
+{
+    "name": "W3Labs.RemoteConfig",
+    "rootNamespace": "W3Labs.RemoteConfig",
+    "references": [
+        "GUID:d7631aec960b044cca2c14442d298abc",
+        "GUID:9d6c7830d9ab746a7a12f144bdeeee7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

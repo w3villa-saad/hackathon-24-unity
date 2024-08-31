@@ -1,0 +1,18 @@
+{
+    "name": "W3Labs",
+    "rootNamespace": "W3Labs",
+    "references": [
+        "GUID:569f5fa31af7545b2994c59f77ffe9e8",
+        "GUID:a64b726e17ffc42d3826ee496f91b841",
+        "GUID:e920ba068e6e84ec6a213e71e5102d24"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
