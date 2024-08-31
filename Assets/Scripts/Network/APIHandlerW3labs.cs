@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SuperOne.Utils;
 using UnityEngine;
 using W3Labs.RemoteConfig;
 using W3Labs.Utils;
@@ -7,9 +8,16 @@ using W3Labs.Utils;
 
 namespace W3Labs.ViralRunner.Network
 {
-    public class APIHandlerW3labs : MonoBehaviour
+    public class APIHandlerW3labs : SingletonMonoBehaviour<APIHandlerW3labs>
     {
 
+        public static APIHandlerW3labs Current;
+        void Start()
+        {
+            DontDestroyOnLoad(this.gameObject);
+            Current = GetComponent<APIHandlerW3labs>();
+
+        }
         [SerializeField] ApiClient _apiClient;
         // public static APIResponse<LeaderBoardDataPOJO> leaderBoardDataPOJO = new APIResponse<LeaderBoardDataPOJO>();
         private Dictionary<string, object> _postDict = new Dictionary<string, object>();
@@ -23,7 +31,7 @@ namespace W3Labs.ViralRunner.Network
 
             var url = baseURL + "getLeaderboard";
             var res = await _apiClient.Get<APIResponse<LeaderBoardDataPOJO>>(url);
-            if (res != null && res.success == true)
+            if (res != null && res.status == true)
             {
 
                 // Debug.Log("Data ::" + res.data + res.success);
@@ -41,11 +49,11 @@ namespace W3Labs.ViralRunner.Network
             var url = baseURL + "getUserDetails?userId=" + userID;
             var res = await _apiClient.Get<APIResponse<PlayerDetailsPOJO>>(url);
 
-            if (res != null && res.success == true)
+            if (res != null && res.status == true)
             {
                 actinOnResponse?.Invoke(true, res.data);
             }
-            else if (res.success == false)
+            else if (res.status == false)
                 actinOnResponse?.Invoke(false, null);
 
             else
@@ -70,7 +78,34 @@ namespace W3Labs.ViralRunner.Network
 
             Debug.Log($"{url} : {postData}");
             var res = await _apiClient.Post<APIResponse<UserInfo>>(url, postData);
-            if (res != null && res.success)
+            if (res != null && res.status)
+            {
+                actionOnResponse.Invoke(true, res.data);
+            }
+            else
+            {
+                actionOnResponse?.Invoke(false, null);
+            }
+        }
+
+
+        public async void GenerateTextFromProms(string userTextInput, Action<bool, UserInfo> actionOnResponse)
+        {
+            var url = baseURL + "history/create";
+            _postDict.Clear();
+            // _postDict.Add("name", username);
+            // _postDict.Add("email", email);
+            _postDict.Add("player_id", PlayerPrefs.GetString("PlayerID"));
+            _postDict.Add("user_text_input", PlayerPrefs.GetString("PlayerToken"));
+            //  _postDict.Add("playerId", playerID);
+
+            // _postDict.Add(GameConstant.PlayerCurrentGameMode, currentMode.ToString());
+            var postData = MySerializer.Serialize(_postDict);
+            //  string postData = "{\"username\":\"" + username + "\",\"country\":\"" + country + "\"}";
+
+            Debug.Log($"{url} : {postData}");
+            var res = await _apiClient.Post<APIResponse<UserInfo>>(url, postData);
+            if (res != null && res.status)
             {
                 actionOnResponse.Invoke(true, res.data);
             }
@@ -93,7 +128,7 @@ namespace W3Labs.ViralRunner.Network
             try
             {
                 var res = await _apiClient.Patch<APIResponse<SetPlayerData>>(url, postData);
-                if (res != null && res.success == true)
+                if (res != null && res.status == true)
                     actionOnResponse?.Invoke(true, res.data);
                 else actionOnResponse?.Invoke(false, null);
             }

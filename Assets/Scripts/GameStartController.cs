@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using W3Labs.ViralRunner.Network;
 
 namespace W3Labs
@@ -20,6 +21,7 @@ namespace W3Labs
                        if (status)
                        {
                            userInfo = data;
+                           SceneManager.LoadSceneAsync(1);
                        }
                        else
                            Debug.Log("Value Not Set");
