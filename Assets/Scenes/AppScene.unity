@@ -2423,6 +2423,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LibaryPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 2627169960303204215, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
