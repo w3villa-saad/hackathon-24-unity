@@ -7,7 +7,7 @@ namespace W3Labs.ViralRunner.Network
     public class APIResponse<T>
     {
         // [JsonProperty("success")]
-        public bool success { get; set; }
+        public bool status { get; set; }
         //  [JsonProperty("msg")]
         public string msg { get; set; }
         // [JsonProperty("data")]

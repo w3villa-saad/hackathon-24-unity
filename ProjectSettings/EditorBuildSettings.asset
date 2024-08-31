@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LogInScene.unity
     guid: a2167baa90a5441eb9e5bb6051f7c053
+  - enabled: 1
+    path: Assets/Scenes/AppScene.unity
+    guid: 595107ef6d2784cfeadc2c3cf2d1dfd3
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
