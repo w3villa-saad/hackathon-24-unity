@@ -27,13 +27,9 @@ namespace W3Labs.ViralRunner.Network
         {
             try
             {
-                int currentMode = (int)GameConstant.CurrentGameMode;
-                url += "?" + GameConstant.PlayerCurrentGameMode + "=" + currentMode.ToString();
                 Debug.Log($"CALLING: {url}");
                 using var webRequest = UnityWebRequest.Get(url);
-                webRequest.SetRequestHeader(GameConstant._authHeaderkey, GameConstant._authHeaderValue);
-                webRequest.SetRequestHeader(GameConstant._vNo, GameConstant.ApplicationVersionNumber);
-                webRequest.SetRequestHeader(GameConstant._userID, GameConstant.UserID);
+
 
 
                 if (timeOut > -1)
