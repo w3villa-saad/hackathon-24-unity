@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Hackathon_24.sln"
+    "dotnet.defaultSolution": "hackathon-24-unity.sln"
 }
