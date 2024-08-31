@@ -81,7 +81,7 @@ namespace W3Labs
                    });
 
         }
-       public string _currentVideoPath = "";
+        public string _currentVideoPath = "";
         bool _isvideoLinkAvaible = false;
         IEnumerator GettingVideoLink()
         {
@@ -95,7 +95,7 @@ namespace W3Labs
                                            //    isvideoLinkAvaible = true;
                                            //    _videoPlayer.url = data.link;
                                            //    _videoPlayer.Play();
-                                           _loaderObject.SetActive(false);
+
                                            _isvideoLinkAvaible = false;
                                            _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id + ".mp4");
                                            StartCoroutine(DownloadAndPlayVideo(data.video_url, _currentVideoPath));
@@ -153,6 +153,7 @@ namespace W3Labs
 
         public void PreparedCompleted(VideoPlayer videoPlayer)
         {
+            _loaderObject.SetActive(false);
             videoPlayer.Play();
         }
 
