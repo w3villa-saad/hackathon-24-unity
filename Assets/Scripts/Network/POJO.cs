@@ -72,7 +72,7 @@ namespace W3Labs.ViralRunner.Network
     }
     public class GettingVideoLink
     {
-        public string link { get; set; }
+        public string video_url { get; set; }
         //[JsonProperty("playersDataArray")]
         //  public List<PlayerData> playersDataArray { get; set; }
 

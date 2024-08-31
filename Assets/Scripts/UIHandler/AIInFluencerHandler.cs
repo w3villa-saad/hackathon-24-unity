@@ -25,6 +25,7 @@ namespace W3Labs
         [Header("VideoCreated")]
         [SerializeField] private GameObject _videoPanel;
         [SerializeField] private VideoPlayer _videoPlayer;
+        [SerializeField] private GameObject _loaderObject;
 
 
         // [Header()]
@@ -41,6 +42,7 @@ namespace W3Labs
         }
         void GenerateTextfromProms()
         {
+            _loaderObject.SetActive(true);
             string promstextString = _promsText.text;
             Debug.Log(promstextString);
             APIHandlerW3labs.Instance.GenerateTextFromProms(promstextString, (status, data) =>
@@ -50,6 +52,7 @@ namespace W3Labs
                            _generatedtext.text = data.script_output;
                            _texpromsPOJO = data;
                            _aiTextPanel.SetActive(true);
+                           _loaderObject.SetActive(false);
                        }
                        else
                            Debug.Log("Value Not Set");
@@ -59,6 +62,7 @@ namespace W3Labs
         }
         void GenerateVideoFromText()
         {
+            _loaderObject.SetActive(true);
             string promstextString = _promsText.text;
             Debug.Log(promstextString);
             string id = _texpromsPOJO.id;
@@ -91,9 +95,10 @@ namespace W3Labs
                                            //    isvideoLinkAvaible = true;
                                            //    _videoPlayer.url = data.link;
                                            //    _videoPlayer.Play();
+                                           _loaderObject.SetActive(false);
                                            _isvideoLinkAvaible = false;
-                                           _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id);
-                                           StartCoroutine(DownloadAndPlayVideo(data.link, _currentVideoPath));
+                                           _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id + ".mp4");
+                                           StartCoroutine(DownloadAndPlayVideo(data.video_url, _currentVideoPath));
 
                                        }
                                        else
