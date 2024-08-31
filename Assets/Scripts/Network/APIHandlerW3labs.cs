@@ -16,7 +16,7 @@ namespace W3Labs.ViralRunner.Network
 
         public static LeaderBoardDataPOJO leaderBoardDataPOJO = new LeaderBoardDataPOJO();
         // string baseURL = $"https://3yss3qru2i56mu27zr3o5574vy0lloea.lambda-url.us-west-2.on.aws/api/";
-        string baseURL => $"http://4.186.57.136/v1/api/";
+        string baseURL => $"https://codekenawabs.edully.com/v1/api/";
         // string baseURL = $"https://7936-136-232-130-202.ngrok-free.app/api/";
         public async void GetLeaderBoard(Action<bool, LeaderBoardDataPOJO> actinOnResponse)
         {
