@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Make Your Ouw Content \nWith AI INFLUENCER"
+  m_text: "Make Your own Content \nWith AI INFLUENCER"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6baaedabb82c247389fccf64605d7204, type: 2}
   m_sharedMaterial: {fileID: 5297072158453187264, guid: 6baaedabb82c247389fccf64605d7204,
