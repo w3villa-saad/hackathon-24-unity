@@ -8,7 +8,7 @@ public class Instagram: MonoBehaviour
     [SerializeField] TMP_InputField field;
 
     private void Start() {
-        button.onClick.AddListener(()=>{ShareToInstagram("@"+field.text);});
+        button.onClick.AddListener(()=>{ShareToInstagram(Application.persistentDataPath+"/"+field.text);});
     }
     public void ShareToInstagram(string videoPath)
     {
