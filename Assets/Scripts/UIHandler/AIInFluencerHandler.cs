@@ -26,6 +26,7 @@ namespace W3Labs
         [SerializeField] private GameObject _videoPanel;
         [SerializeField] private VideoPlayer _videoPlayer;
         [SerializeField] private GameObject _loaderObject;
+        [SerializeField] private GameObject _errorText;
 
 
         // [Header()]
@@ -42,7 +43,10 @@ namespace W3Labs
         }
         void GenerateTextfromProms()
         {
+            _promsText.text = "";
+            _errorText.SetActive(false);
             _loaderObject.SetActive(true);
+
             string promstextString = _promsText.text;
             Debug.Log(promstextString);
             APIHandlerW3labs.Instance.GenerateTextFromProms(promstextString, (status, data) =>
@@ -97,6 +101,12 @@ namespace W3Labs
                                            //    _videoPlayer.Play();
 
                                            _isvideoLinkAvaible = false;
+                                           if (data == null)
+                                           {
+                                               _errorText.SetActive(true);
+                                               _loaderObject.SetActive(false);
+
+                                           }
                                            _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id + ".mp4");
                                            StartCoroutine(DownloadAndPlayVideo(data.video_url, _currentVideoPath));
 
