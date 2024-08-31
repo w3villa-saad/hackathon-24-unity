@@ -205,12 +205,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &752237262 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5612580151560876695, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 9009188206090996681}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &802397109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 122423125740782453, guid: c1fa1a8e3d18b46d19e1774be0e507b6,
         type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 122423125740782453, guid: c1fa1a8e3d18b46d19e1774be0e507b6,
+        type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
@@ -2423,56 +2422,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LibaryPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3447862884899892800, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: gridParent
-      value: 
-      objectReference: {fileID: 752237262}
-    - target: {fileID: 4796645010055669856, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_Spacing.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4796645010055669856, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_Spacing.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4796645010055669856, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_ChildAlignment
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612580151560876695, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612580151560876695, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612580151560876695, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612580151560876695, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612580151560876695, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612580151560876695, guid: 4ae34cc0568334745aa6e8d2a8b468fa,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
