@@ -1841,7 +1841,7 @@ PrefabInstance:
     - target: {fileID: 2090255062656196606, guid: c1fa1a8e3d18b46d19e1774be0e507b6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2573153838963081508, guid: c1fa1a8e3d18b46d19e1774be0e507b6,
         type: 3}
@@ -1852,6 +1852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HomePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012141117337755600, guid: c1fa1a8e3d18b46d19e1774be0e507b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3571776064204023162, guid: c1fa1a8e3d18b46d19e1774be0e507b6,
         type: 3}
@@ -2312,11 +2317,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SharePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2316573402681760406, guid: 04e9fe97d149041148f552b2484f693d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
