@@ -76,7 +76,6 @@ namespace W3Labs
                        if (status)
                        {
                            _aiTextPanel.SetActive(false);
-                           _videoPanel.SetActive(true);
                            StartCoroutine(GettingVideoLink());
                        }
                        else
@@ -107,6 +106,8 @@ namespace W3Labs
                                                _loaderObject.SetActive(false);
 
                                            }
+
+                                           _videoPanel.SetActive(true);
                                            _currentVideoPath = Path.Combine(Application.persistentDataPath, _texpromsPOJO.id + ".mp4");
                                            StartCoroutine(DownloadAndPlayVideo(data.video_url, _currentVideoPath));
 
